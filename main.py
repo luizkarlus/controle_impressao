@@ -87,6 +87,15 @@ class SistemaDeImpressao:
         else:
             print("Usuário não encontrado.")
 
+    def excluir_usuario(self, telefone):
+        telefone = telefone.strip()  # Remove espaços extras
+        if telefone in self.usuarios:
+            del self.usuarios[telefone]
+            print(f"Usuário com telefone {telefone} excluído com sucesso.")
+            self.salvar_usuarios()
+        else:
+            print("Usuário não encontrado.")
+
     def listar_usuarios(self):
         print("Usuários cadastrados:")
         for usuario in self.usuarios.values():
@@ -103,7 +112,8 @@ def main():
         print("3. Adicionar créditos")
         print("4. Debitar créditos")
         print("5. Listar usuários")
-        print("6. Sair")
+        print("6. Excluir usuário")
+        print("7. Sair")
 
         opcao = input("Escolha uma opção: ")
 
@@ -131,6 +141,10 @@ def main():
             sistema.listar_usuarios()
 
         elif opcao == "6":
+            telefone = input("Digite o telefone do usuário a ser excluído: ")
+            sistema.excluir_usuario(telefone)
+
+        elif opcao == "7":
             print("Saindo do sistema...")
             break
 
